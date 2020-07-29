@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AF-WF-DOC-001-MD.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<head>
+<style>
+    andersonFirearms {
+        font-family: "times new roman";
+    }
+</style>
+</head>
+<h1><center><andersonFirearms>ANDERSON FIREARMS</andersonFirearms></center></h1>
+<div style="text-align:center"> <img src='renders/AF-WF-LR-RND-001.jpg'> </div>
+<h2><center>OFFICIAL INSTRUCTIONS MANUAL FOR THE MODEL WILDFIRE</center></h2>
+<center><div style='text-align:center'><img src='renders/US&TEXAS.jpg'></div></center>
+<h3><center>Implementation of the Disposable Biodegradable Armalite Model 15 Rifle Kit</center></h3>
+<h3><center>By Anderson N.</center></h3>
+<hr>
+<h1 id="overview">OVERVIEW</h1>
+<p>Hello, and thanks for downloading and supporting the Anderson Firearms Model WildFire. There are some key differences between this design and the previous Ghostfire Model that sparked the sporadic spread and utility of the general AR Platform. There are a lot of housekeeping items we need to go over before you continue, which will answer a lot of questions and prevent y'all from cluttering my communications. First, lets go over what this instruction manual entails:</p>
+<ul>
+<li><strong>Manufacturing</strong></li>
+<li><strong>Assembly</strong></li>
+<li><strong>Application</strong></li>
+<li><strong>Maintenance</strong></li>
+</ul>
+<blockquote>
+<p><strong>Manufacturing</strong> involves all the big details on how to successfully set up your printer and select the optimal slicer settings for the best print results</p>
+</blockquote>
+<blockquote>
+<p><strong>Assembly</strong> involves how to put these pieces together, including actual AR Lower pieces such as the pins both front and rear, the FCG (Fire Control Group), and the buffer tube. While the accessories are important, their assembly does not require a genius.</p>
+</blockquote>
+<blockquote>
+<p><strong>Application</strong> is how the whole system works, as there are key differences in the manual of arms of custom made 3d printed AR Lowers and accessories.</p>
+</blockquote>
+<blockquote>
+<p><strong>Maintenance</strong> is how to keep your AR rifle in top notch condition. Because we are dealing with 3D printed materials, there are some surprising things I have learned that should be noted when caring for your rifle after excess use.</p>
+</blockquote>
+<p>Now that we have gotten the main contents out of the way, you can go ahead and get started on the official manual! <strong>To get started on your new build, move over and start on the &quot;MANUFACTURING&quot; section.</strong> However, if there are other house keeping items you want to inquire about, ill post them below in subsections.</p>
+<h3 id="mission-statement-of-the-project">MISSION STATEMENT OF THE PROJECT</h3>
+<center>The mission statement of the project and its purpose is as follows:</center>
+<blockquote>
+<p><strong><em><center>To spread, disseminate, publish, propagate knowledge of manufacturing, transporting, and distributing the concept of expedient homemade firearms. To further the implementation and concept of the Disposable Biodegradable Armalite Model 15 Rifle Kit.</center></em></strong></p>
+</blockquote>
+<center>Political objectives are as follows:</center>
+<blockquote>
+<p><strong><em><center>To combat the rise and resurgence of Communist, Marxist, and Socialist forces and actors both foreign and domestic. To radicalize Americans under the pretext of the Constitution. To uphold, maintain, and exert Western Ideology and radical extremist beliefs such as freedom, liberty, and justice. To counter attempts at deconstructing the concept of the United States of America by demoralization, collapse, crisis, and normalization of non-American Ideology. To provide for the common defence of the people under the American Republic, and to supply for the counter offense of oppressed peoples of authoritarian regimes.</center></em></strong></p>
+</blockquote>
+<center>Design objectives are as follows:</center>
+<blockquote>
+<p><strong><em><center>To design a rifle kit for the AR-15 platform of rifles, that once outfitted, will enable a user to take this weapon into combat, and out of combat, in optimal condition. To design a rifle to last a minimum of 300 cartridges discharged, and an ideal maximum of 1000 cartridges or more discharged. To design a lower receiver to be compatible with the most commonly available upper receivers with forward assists. To design the entire kit without the use of brims, supports, or any kind of external use of additive manufacturing. To design the entire kit to use PLA/PLA+, the most common and inexpensive filament to use other than ABS.</center></em></strong></p>
+</blockquote>
+<hr>
+<h1 id="manufacturing">MANUFACTURING</h1>
+<h3 id="naming-convention">Naming convention</h3>
+<p>Listen carefully, because there is a specific naming convention that I have applied to each file part. These files were named in this way because I picked them up from learning in the field of engineering, and have realized that this convention is very efficient at organizing and specifying exactly what parts or models are what, and that this way, things will get done faster and more orderly.</p>
+<p>Here is an example of a file name and all the components of that name:</p>
+<blockquote>
+<p><strong>AF-WF-LR-PRT-001-STL.stl</strong></p>
+</blockquote>
+<ul>
+<li><strong>AF</strong> ------&gt; Company or Organization : &quot;<strong>A</strong>nderson <strong>F</strong>irearms&quot;</li>
+<li><strong>WF</strong> ------&gt; Product or Model: &quot;<strong>W</strong>ild <strong>F</strong>ire&quot;</li>
+<li><strong>LR</strong> ------&gt; Component: &quot;<strong>L</strong>ower <strong>R</strong>eceiver&quot;</li>
+<li><strong>PRT</strong> -----&gt; Part</li>
+<li><strong>001</strong> -----&gt; Numbered Part</li>
+<li><strong>STL</strong> -----&gt; Type of file, in this case an STL file</li>
+</ul>
+<p>Heres another example of a file name that is similar but different in other ways:</p>
+<blockquote>
+<p><strong>AF-WF-GS-MDL-002-SLDWRKS.sw</strong></p>
+</blockquote>
+<ul>
+<li><strong>AF</strong> ------&gt; Company or Organization: &quot;<strong>A</strong>nderson <strong>F</strong>irearms</li>
+<li><strong>WF</strong> ------&gt; Product or Model: &quot;<strong>W</strong>ild <strong>F</strong>ire&quot;</li>
+<li><strong>GS</strong> ------&gt; Component: &quot;<strong>G</strong>host <strong>S</strong>ights&quot;</li>
+<li><strong>MDL</strong> -----&gt; Model, which consist of parts</li>
+<li><strong>002</strong> -----&gt; Numbered Model</li>
+<li><strong>SLDWRKS</strong> ------&gt; Type of file, in this case a SolidWorks File</li>
+</ul>
+<p>Now that you got an idea of how the naming convention works, it's time to make sense of the whole system.</p>
+<h3 id="choosing-what-to-print-and-what-not-to">Choosing what to print and what not to</h3>
+<p>First things first: This is not just a lower; Its a whole system that will convert your AR into a battle-ready rifle. This whole 'kit' is the whole deal, and here's what's inside:</p>
+<ul>
+<li>WildFire Lower</li>
+<li>Adjustable Ghost ring sights, front and rear (&quot;Iron sights&quot;)</li>
+<li>Pistol Grip</li>
+<li>Stock</li>
+<li>Keymod only Thermal Covers (Barrel Covers)</li>
+<li>Keymod only Vertical Foregrip</li>
+<li>Flashlight attachment</li>
+<li>Custom Side Plate</li>
+</ul>
+<p>Now for some notes:</p>
+<ul>
+<li>I only did keymod because thats all I have on my rifle. I would do MLOK, but i'm lazy and only bothered designing what I had in hand. Plus, Keymod is actually open source (correct me if im wrong), which means its friendly for all kinds of stuff.</li>
+<li>You don't have to use everything provided in the kit. If all you want is the lower, be my guest.</li>
+<li>The front sights adjust for elevation, and the rear sights adjust for windage.</li>
+<li>The flashlight attachment only works for flashlights with a one inch diameter. Again this is because I picked the cheapest metal flashlights I can find and simply worked with that.</li>
+</ul>
+<p>Select what you want to print, and leave the rest of the files alone. They should be conveniently named after their function. If all you want is to print, look for the STL files of each product you desire. If you want to modify designs for yourself, look into the SolidWorks files, because I used Solidworks to craft this product. There are also STEP files as well for you if you use other CAD software. They all use the same naming convention so they shouldn't be difficult to sort out and use.</p>
+<h3 id="slicing-preferences">Slicing preferences</h3>
+<p>During testing, the WildFire Lower was printed at 80% while the rest of the parts were printed at 40% to 60%. However, for safety sake print according to the graph shown below for the best possible results. <strong>All prints were done in PLA, not ABS, not PETG, not Resin method, just plain-o PLA. I cannot guarantee that the kit will work with anything other than PLA, but i'm pretty sure that if it works in PLA, there's a high chance it'll work in ABS or other materials. Let me know what your results look like.</strong></p>
+<p><strong>Instructions:</strong> In the graph below, print each of the items listed by loading the associated File Name STL into your preferred slicer, assuring that you follow the preferred range of infill, layer lines, and quantity of pieces. Do not load or print any of the files that are not listed below unless you understand what you are doing.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">File Name</th>
+<th style="text-align:center">Infill %</th>
+<th style="text-align:center">Layers Lines</th>
+<th style="text-align:center">Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-001</td>
+<td style="text-align:center">&gt;=60</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-002</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-003</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-004</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-005</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-006</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-007</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-008</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-LR-PRT-009</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-PG-PRT-001</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">ANY CUSTOM SIDE PLATE</td>
+<td style="text-align:center">&gt;=60</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-GS-MDL-001</td>
+<td style="text-align:center">&gt;=60</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-GS-MDL-002</td>
+<td style="text-align:center">&gt;=60</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-TC-PRT-001</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">DEPENDS ON RAIL</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-TC-PRT-002</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">DEPENDS ON RAIL</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-VF-PRT-001</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-VF-MDL-001</td>
+<td style="text-align:center">&gt;=80</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-SS-PRT-001</td>
+<td style="text-align:center">&gt;=60</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">AF-WF-SS-MDL-001</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="printing-preferences">Printing Preferences</h3>
+<ul>
+<li>Do not print with supports</li>
+<li>Try not to use any infill pattern except grid and cubic (I use cubic by the way).</li>
+<li>Do not print with brims (unless you can clean it up)</li>
+<li>Try not to print diagonally on the print bed, unless your print bed is too small. Since I have never tested the results of a part printed diagonally, I can't guarantee its success.</li>
+<li>Orientate the part to print on it's flattest side. Refer to the &quot;Printing Orientation&quot; section below to see the correct orientations.</li>
+<li>Print at temperatures that is most optimal for you. For me, I printed at 190c for PLA, and 210c for PLA+. Your temps could be different.</li>
+<li>All prints were designed to work with the standard 1.75mm filament, no higher, no lower. I can't guarantee the success of 3.25mm filament, but you are welcome to try <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></li>
+<li>Print at your standard layer height (normal), but if you want more details, only the AF-WF-LR-PRT-001 will benefit more from higher detail layer height.</li>
+<li>All of the pieces with bolts were designed to print &quot;sideways.&quot; Look into the &quot;Printing Orientation&quot; section below and you will know what I mean.</li>
+<li>Enable combing on all of the pieces. I have tested without combing, and while both have yielded identical results, with combing the pieces were a lot easier to clean. Note that combing will affect appearances, but honestly looks don't matter when it comes to shooting.</li>
+<li>Some parts, such as the Ghost Ring Sights, will come in a model containing all of the pieces conveniently laid flat. This was done so that you can print the entire model in one go, rather than printing each small piece one by one.</li>
+</ul>
+<h3 id="printing-orientation">Printing Orientation</h3>
+<p>When loading the STL's onto the print bed, the orientation matters, and you will have to rotate the pieces, unless the STL files have them orientated correctly already. I have worked with each piece to make sure they are orientated correctly in STL and have loaded them in my preferred slicer (Cura) to double check that they are correct. Ideally you should print on the flattest side, and since there's a specific orientation required for each piece, you will have to refer to the images below to see the orientation required. The only piece that doesn't have a prefered orientation is the Design Plates, and that's because these custom plates are just for you to design and print, however you desire.</p>
+<div style="text-align:center"> <img src='renders/AF-WF-LR-RND-002.jpg'> </div>
+<p><em><center>Lower Reciever Orientation </center></em></p>
+<div style="text-align:center"> <img src='renders/AF-WF-ACS-RND-001.jpg'> </div>
+<p><em><center>Assessories Orientation</center></em></p>
+<p><em><center>Warning: Do not load everything you see into the print bed and just print. It doesn't work like that. These are only references to show you the proper orientation of the pieces.</center></em></p>
+<hr>
+<h1 id="assembly">ASSEMBLY</h1>
+<p>This is the sauce of the build, and will be the most interesting part of the manual. You'll notice that there are no external metal pieces: Great work has been put into ensuring that no external metal pieces are used whatsoever: everything you need to complete the kit comes right off the print bed, and no trip to a local hardware store is ever needed.</p>
+<h3 id="tools-required">Tools Required</h3>
+<p>The only tools you will need are the following:</p>
+<ul>
+<li>Pliers</li>
+<li>4.0 Flat Head Screwdriver (Slotted Screwdriver)</li>
+<li>Lighter or small handheld butane torch</li>
+<li>Steel or brass pin punch (to clean/refine holes for the pivot and takedown pins)</li>
+<li>(Optional) Super Glue or Epoxy Glue</li>
+<li>1.75mm filament (for use as rivets)</li>
+<li>Any tool you will use to clean built in supports for the file &quot;AF-WF-LR-PRT-001&quot; or parts containing extra stringing</li>
+</ul>
+<h3 id="standard-procedure-of-assembling-to-be-used-on-every-step-of-the-way">Standard procedure of assembling (To be used on every step of the way)</h3>
+<ol>
+<li>Clean the part of any excess filament.</li>
+<li>fix imperfections of pieces using the lighter to refine the piece. The heat will shrink the pieces and eliminate excess filament. Be very careful and go slowly on this step. Take care not to burn the piece or melt it. The heat is to remove excess filament that cant be removed conventionally.</li>
+<li>On any screws, make sure to screw the piece onto the mating face first before fastening down with other pieces. You want the screws to fit smoothly, and depending on the quality of your printer, this may not always be the case. Use the pliers to bite into the screw for extra leverage in smoothing the screw. If the screws are too tight, unscrew and use the lighter to soften the screw face.</li>
+<li><em>Note:</em> On any given steps when using the lighter or torch, you should not have to heat up the surface for more than a quarter of a second. Anymore, and you risk deforming it or melting it, and thats not ideal. If you need more heat, use short bursts of heat to control the parts and to avoid permanent damage to the print surface texture.</li>
+<li>The assembly will come in a form of two images: one will showcase the exploded view of the assembly. The second will showcase the collapsed view of the assembly. As long as you have printed everything, the assembly as a whole should be very simple and uncomplicated. Use the images to reference the assembly of each piece.</li>
+</ol>
+<h3 id="lower-receiver-assembly">Lower Receiver Assembly</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-LR-RND-005.jpg' ></div></center>
+<p>Notes:</p>
+<ul>
+<li>The side rail struts once assembled must be removed to gain access to the rear take-down pin</li>
+<li>Roller Pins should not be used. Instead, insert a string of 1.75mm filament, and heat the ends into the lower, like rivets on an AK. This technique applies only to the bolt release/catch and the trigger guard portion of the lower.</li>
+<li>The design plate was meant to be pressed into the side of the lower. If the fitting is not sufficient, decrease scaling of the design plate if it won't fit, increase scaling of the design plate if it is too loose. Super glue is also applicable.</li>
+<li>For a permanent attachment, the part AF-WF-LR-PRT-005 can be doused with epoxy or super glue and screwed into the main lower. I have done this, but doing this step will remove the possibility of swapping out the buffer tube connector end of the lower, which is the main point of this design. For all testing, I have not glued this part into the lower.</li>
+</ul>
+<h3 id="pistol-grip-assembly">Pistol Grip Assembly</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-PG-RND-003.jpg'></div></center>
+<p>Notes:</p>
+<ul>
+<li>This grip is compatible on regular aluminum lowers as well.</li>
+<li>The reason for this grip is because some grips sold on the market include the curved top portion of the grip, which is not compatible with this lower reciever.</li>
+</ul>
+<h3 id="ghost-ring-sights-assembly">Ghost Ring Sights Assembly</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-GS-RND-003.jpg'></div></center>
+<center><div style='text-align: center'><img src='renders/AF-WF-GS-RND-006.jpg'></div></center>
+<p>Notes:</p>
+<ul>
+<li>All pieces are designed to be compatible with picatinny rail only.</li>
+<li>You will notice that there is no front sight post. This is because you will have to insert a piece of 1.75mm filament into the exposed slot on the front sight post adapter, and straighten the post. This will act as the front sight post notch when using the Ghost Sights.</li>
+<li>Once you finish printing the rear sights, you can refine to diopter aperture by inserting a heated steel/brass punch to refine the hole and make it clear to gain a sight picture.</li>
+</ul>
+<h3 id="mounted-illumination-assembly">Mounted Illumination Assembly</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-MI-RND-003.jpg'></div></center>
+<p>Notes:</p>
+<ul>
+<li>All pieces are designed to be compatible with picatinny rail only</li>
+<li>The Mounted Illumination will only accept flashlights that have a one inch diameter. Mine is 1.025 inches. However, since you have access to the STEP files and the SLDWRKS files, you can modify the files yourselves to match the diameter or any desired flashlight.?</li>
+</ul>
+<h3 id="vertical-foregrip-assembly">Vertical Foregrip Assembly</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-VF-RND-003.jpg'></div></center>
+<p>Notes:</p>
+<ul>
+<li>All pieces are designed to be compatible with keymod rail only. See FAQ at the end of the documentation to see why.</li>
+<li>You will notice that the vertical foregrip is too small to grip entirely. That is because this is a foregrip not a standard grip. It is meant for the hands to grapple the rail cover and the grip in between, and yank back into your stock to tighten the hold.</li>
+</ul>
+<h3 id="standard-stock">Standard Stock</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-SS-RND-003.jpg'></div></center> 
+<p>Notes:</p>
+<ul>
+<li>All pieces are designed to be compatible with M4 buffer tubes only, but if it works with commercial buffer tubes (which has a slighter larger diameter which this design actually meets) let me know.</li>
+<li>This is not designed to be adjustable, because the screws make it impractically so. I will come up with an adjustable solution in future projects.</li>
+</ul>
+<h3 id="thermal-covers">Thermal Covers</h3>
+<center><div style='text-align: center'><img src='renders/AF-WF-TC-RND-003.jpg'></div></center>
+<p>Notes:</p>
+<ul>
+<li>All pieces are designed to be compatible with keymod rail only.</li>
+<li>The thermal plates are to be inserted and then slide into fit like a slotted mechanism.</li>
+<li>Once fitted, the thermal covers are fastened into place with the bolt, which is shown in the visual above.</li>
+<li>The plates can be inserted in both orientations, and take up 3 or 3.5 keymod holes depending on the orientation you place them.</li>
+</ul>
+<hr>
+<h1 id="application">APPLICATION</h1>
+<h3 id="manual-of-arms-and-rules">Manual of Arms and Rules</h3>
+<p>When the WildFire Lower is assembled correctly, it will function identically to any other AR-15 platform of rifles. To use, make sure you follow all rules of your local range, and to follow the four fundamental rules of firearms:</p>
+<ol>
+<li>Keep your finger off the trigger until you're ready to fire.</li>
+<li>Be wary of what you are shooting at and beyond that.</li>
+<li>All firearms are to be treated as if they're loaded</li>
+<li>Be wary of where your muzzle is pointing at</li>
+</ol>
+<h3 id="dry-firing-practice">Dry Firing Practice</h3>
+<p>Once you have memorized the rules, you should be ready to fire. Dry-firing is a good way to practice before shooting. Start by checking if your firearm is loaded, and lock the bolt open. Operate the fire-selector from &quot;F&quot;(Fire) to &quot;S&quot;(Safe). Insert an empty magazine into the lower, practicing the use of your work space to operate the firearm easily. Once inserted, close the bolt. Take aim, ensuring that your finger remains off the trigger. Switch the fire selector to &quot;F&quot;(Fire), and dry fire when the target picture is acquired.</p>
+<h3 id="magazine-compatibility">Magazine Compatibility</h3>
+<p>The firearm was tested with the following kinds of magazines, all with success:</p>
+<ul>
+<li>PMAGS GEN II</li>
+<li>PMAGS GEN III</li>
+<li>Aluminium magazines with steel butt plates (GI Mags)</li>
+<li>STANAGS (falls under GI Mags)</li>
+<li>MFT Magazines</li>
+<li>Custom spray painted mags (rougher to insert, but worked fine)</li>
+<li>Custom 10rnd PMAGS GEN III</li>
+</ul>
+<h3 id="mortaring">Mortaring</h3>
+<p>Mortaring is when a malfunction renders the bolt inoperable by the charging handle, and thus must be forcefully ejected by slamming the stock into the ground while yanking down on the charging handle. That said, mortaring is unfortunately a weakness of this kit, because limitations on the stock means that mortaring of any kind will most likely break not the stock but it's bolts. Thus when mortaring, expect to replace the bolts that are used to secure the stock.</p>
+<h3 id="zeroing-using-ghost-ring-sights">Zeroing using Ghost Ring Sights</h3>
+<p>These are essentially diopter sights, and should be treated like the standard iron sights used on the M4/M16 platform of rifles. The difference is that there is only one option instead of flippable long range and short range, and its pretty big compared to the pinholes of other diopter sights. This choice was made because bigger pin holes would allow the eye to acquire a sight picture faster, at the cost of some precision. However, this was also a utilitarian choice: you would still be able to hit man size targets out to 100 yards, and four inch groups at 50 yards. It's not perfect, but it works.</p>
+<p>To zero the sights, the front post adjusts for elevation, while the rear post adjusts for windage. Here's how I adjust my sights:</p>
+<ol>
+<li>Attach the front and rear sights onto the upper, and boresight the sights at 25 yards.</li>
+<li>Once boresighted, assemble the AR, load 3 cartridges, and fire directly at bullseye at 25 yards.</li>
+<li>Observe the shot group, and make adjustments if necessary, with each adjustment following another 3 cartridges until the group is directly over the bullseye.</li>
+<li>Place the weapon at the 50 yard mark, and repeat the tests, ensuring that the shot placement can consistantly hit a man size target.</li>
+</ol>
+<p>The idea is not to get headshots or bullseyes. The idea is to be able to reliably hit man size targets should you touch out to 100 or even 200 yards. One thing you should note is that this device was never tested out to 100 yards, but tests at 50 yards showed that the sights can hold zero. This was a limitation of the ranges I have been to, so if I had the option to shoot out to 100, I would have.</p>
+<h3 id="testing">Testing</h3>
+<p>This is a big part of all of my devices: To ensure that they're tested to work and work reliably in the field. The purpose of this test is to show that my lower can withstand 300 rounds, and if so, you may test further to see how much cartridges you can expend before failure or seizure. That said, my testing was done through 2 trips to the range with a friend and we blasted 300 rounds without major malfunctions and issues. We had only ever encountered one failure to feed on the first cartridge of a fully loaded magazine when racking the charging handle, and the bolt did not pick up a round. I later discovered that the malfunction was not caused by the lower, but by the magazine, which was an aluminum STANAG. This magazine was given to me because another friend who used it reported issues with it when shooting 300 BLKOUT with this magazine. Other than that, the lower experienced no issues, and chugged 300 cartridges without any malfunction or breakage. Note that in between range trips one and two, the only major change to the lower was a reprint of a better and more ergonomic pistol grip. The new grip was a far superior design in terms of comfort and gripability. Overall a huge success. Photos will be attached below to showcase testing.</p>
+<hr>
+<h1 id="maintenance">MAINTENANCE</h1>
+<h3 id="basic-cleaning">Basic Cleaning</h3>
+<p>For the most part, the upper receiver will be cleaned normally, as the lower was found to leave no plastic residue that required anything else to be cleaned. The lower however, will have to be cleaned as frequently as the upper. Previously, metal lowers do not need to be maintained at all like the uppers because residue does not impact the Fire Control Group's ability to function. Because PLA is printed in layers, excess carbon can build up in between layers and would increase friction on the fire control group, which may impact the ability for the trigger to function. I say maybe because I have never experienced the trigger failing to function, but have noted that as carbon begins to build up in excess of 200 rounds during testing, the trigger pull was in fact heavier, but it continues to function as intended. When cleaning the lower, focus on wiping carbon off the magazine well, as well as carbon imparted on the hammer, and the inside well of the fire control group. You do not need to disassemble to the Fire Control Group, just wipe any spots with carbon on them. Note that carbon will be imprinted onto the lower, and thus cannot be removed completely.</p>
+<h3 id="advance-cleaning-must-read">Advance Cleaning (Must read)</h3>
+<p>There is one major instance where a full breakdown and clean is required: When the weapon is deployed in adverse conditions (rain and mud). This means disassembling the Fire Control Group and wiping the section dry. What I notice is that rust can rapidly develop in the lower. To be frank, I'm not sure why, but I would assume the reason boils down to some property of layers and PLA retaining moisture which means a through clean is required. This is something that I'm very adamant about: clean the gun after you get water in it. Im certain that this rule also applies to conventional aluminum lowers, but more so on these WildFire Lowers.</p>
+<h3 id="replacing-parts">Replacing parts</h3>
+<p>The WildFire was designed to blast through a clean 1000 cartridges, and then have the buffer tube connector and support struts replaced. Rather than printing the whole lower everytime it fails, this design allows you to only print the parts you need to replace, and not the whole lower each time. This saves a lot of material, time, and allows you to bring replacement parts on the field to repair it in the field, although this should not be necessary. This design was also done to take advantage of increased structural strength by allowing the normal force of the Bolt Carrier Group to act against layer lines, not with it. You will know that this means when you print and realize that the adhesion of layer lines is the real flaw of a printed piece's ability to withstand compression and tension, and that the orientation of the printed pieces eliminates this possibility. Replace pieces if necessary when enough rounds (1000) have been put through them, or when cracks and heat warping is observed.
+<br></p>
+<hr>
+<h1 id="faqs-and-inquiries">FAQ's and inquiries</h1>
+<h4 id="differences-between-this-build-and-the-ghostfire-model">Differences between this build and the Ghostfire model</h4>
+<p>The biggest revolution of this build and the Ghostfire model is the no metal no nonsense philosophy. This means that other than the standard AR Build Kit, there are no external nut, bolt, washer, or metal of any kind! This means you don't need to visit the hardware store to get this build into action. No nonsense also means that you do not need to implement any form of 3D Printed tricks of any kind, nor any supports, and because this was entirely designed around the use of PLA, virtually any 3D printed material is compatible with this design. No modification of anything at all, just slap the files on your slicer, and rock n' roll. The design was even tested at 40-80% infill, to ensure that even at its weakest and worse, it could still run. All needed supports are already built into the design, which means you don't need to add your own. Because of the small size of each print, these parts are certain to fit smaller print beds. No nonsense, no stupidity, idiot proof, almost marine grunt proof.</p>
+<h4 id="why-did-you-build-and-design-these-lowers">Why did you build and design these lowers?</h4>
+<p>Because printer go brrrrrrr.</p>
+<h4 id="plausible-deniability">Plausible Deniability</h4>
+<p>Because this has to be said: You print it, thus you are responsible for its outcome. Under no circumstances am I held responsible should this design go south. However, as you will know, I did in fact check and test my designs and provided proof of these checks and tests to show that the design works. The proof will be found in the Application section, where I will detail the results of long term extreme testing, and the optimal round count before recommended replacement of certain parts, or the whole lower. You have been warned.</p>
+<p>On another serious note, any mass killing, mass shooting, or mass (insert illegal crime here) caused by this device is not my fault or intention. I have never designed and intended for this device to be used as a means to an end of a violent crime or violent acts. What you do with my knowledge is your responsibility.</p>
+<h4 id="on-the-note-regarding-private-sales">On the note regarding private sales</h4>
+<p>Anyone who tries to sell you this device or the knowledge to sell you this device is ripping you off. This device is of open domain, so unless you don't own a printer and need to buy one from a friend for educational purposes, you're being ripped off. That said, follow your local laws and make sure you understand what manufacturing entails.</p>
+<h4 id="will-there-be-future-models">Will there be future models?</h4>
+<p>Yes. The next model(s) are going to:</p>
+<ul>
+<li>Provide a functional lower for AR-10 platform (yessssss, also most likely for DPMS AR-10.)</li>
+<li>Unobtruded access to the fire selector and rear take-down pin</li>
+<li>Select Fire (maybe, depends on if I can hide from the FBI)</li>
+<li>Experimental PLA only suppressor (Thanks to my incredible experience, I may know how to get this idea to work. Also depends on if I can hide from both the ATF and the FBI.)</li>
+<li>Provide a website for all of this (maybe, if this becomes bigger than just me.)</li>
+<li>22Lr single shot multi use pistol (if it's fun enough, sure)</li>
+<li>Beer Cannon, because rednecks in Texas need an efficient method of transporting beer. Also depends on if I can hide from the FBI AND the ATF.</li>
+<li>Device to crimp 5.56 and .223 casing to be used as blanks just for the beer cannon.</li>
+</ul>
+<h4 id="how-can-i-support-your-work">How can I support your work?</h4>
+<p>By printing this lower, duhhh.</p>
+
+</body>
+</html>
